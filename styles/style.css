@@ -1,0 +1,449 @@
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif;
+    background: radial-gradient(circle at center, #1a0d1a, #0d0d1a, #000000);
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+    color: white;
+}
+
+/* Galaxia de fondo */
+.galaxy-bg {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(2px 2px at 20px 30px, #ffffff, transparent),
+        radial-gradient(2px 2px at 40px 70px, #ff1744, transparent),
+        radial-gradient(1px 1px at 90px 40px, #e91e63, transparent),
+        radial-gradient(1px 1px at 130px 80px, #f06292, transparent),
+        radial-gradient(2px 2px at 160px 30px, #ffffff, transparent);
+    background-repeat: repeat;
+    background-size: 200px 100px;
+    animation: galaxyMove 30s linear infinite;
+    opacity: 0.4;
+}
+
+@keyframes galaxyMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(-200px, -100px); }
+}
+
+/* Contenedor principal */
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    padding: 20px;
+    text-align: center;
+    position: relative;
+    z-index: 10;
+}
+
+/* Corazón simple */
+.heart {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    margin-bottom: 40px;
+    animation: gentlePulse 3s ease-in-out infinite;
+}
+
+.heart::before,
+.heart::after {
+    content: '';
+    width: 30px;
+    height: 48px;
+    position: absolute;
+    left: 30px;
+    transform: rotate(-45deg);
+    background: linear-gradient(45deg, #ff1744, #e91e63);
+    border-radius: 30px 30px 0 0;
+    transform-origin: 0 100%;
+    box-shadow: 0 0 20px rgba(255, 23, 68, 0.5);
+}
+
+.heart::after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Texto principal */
+.main-text {
+    margin-bottom: 40px;
+}
+
+.name {
+    font-size: 2.5rem;
+    font-weight: bold;
+    background: linear-gradient(45deg, #ff1744, #e91e63, #f06292);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 20px;
+    animation: textGlow 4s ease-in-out infinite alternate;
+}
+
+.love-message {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    opacity: 0.9;
+    margin-bottom: 10px;
+    font-style: italic;
+}
+
+.signature {
+    font-size: 1rem;
+    opacity: 0.7;
+    margin-top: 20px;
+}
+
+@keyframes textGlow {
+    0% { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+    100% { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6); }
+}
+
+/* Reloj útil */
+.clock-container {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin-top: 30px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+.clock-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 10px;
+}
+
+.time {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #ff1744;
+    text-shadow: 0 0 10px rgba(255, 23, 68, 0.5);
+    margin-bottom: 5px;
+}
+
+.date {
+    font-size: 1rem;
+    opacity: 0.7;
+}
+
+/* Contador de amor */
+.love-counter {
+    background: rgba(255, 23, 68, 0.1);
+    border-radius: 15px;
+    padding: 15px;
+    margin-top: 20px;
+    border: 1px solid rgba(255, 23, 68, 0.3);
+}
+
+.counter-title {
+    font-size: 0.9rem;
+    opacity: 0.8;
+    margin-bottom: 8px;
+}
+
+.counter-value {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #f06292;
+    text-shadow: 0 0 10px rgba(240, 98, 146, 0.5);
+}
+
+/* Criatura vista desde arriba mejorada */
+.creature {
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    z-index: 5;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+}
+
+.creature:hover {
+    transform: scale(1.1);
+}
+
+.creature-body {
+    width: 40px;
+    height: 40px;
+    background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.95), rgba(220, 220, 220, 0.9));
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 
+        0 0 25px rgba(255, 255, 255, 0.4),
+        inset -5px -5px 10px rgba(0, 0, 0, 0.15);
+    animation: breathe 2.5s ease-in-out infinite;
+}
+
+/* Cabeza de la criatura */
+.creature-head {
+    width: 24px;
+    height: 24px;
+    background: radial-gradient(circle at 40% 40%, rgba(255, 255, 255, 0.98), rgba(230, 230, 230, 0.9));
+    border-radius: 50%;
+    position: absolute;
+    top: -8px;
+    left: 8px;
+    box-shadow: 
+        0 0 20px rgba(255, 255, 255, 0.5),
+        inset -3px -3px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Ojos desde perspectiva superior */
+.creature-eyes {
+    position: absolute;
+    top: 6px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 6px;
+}
+
+.creature-eye {
+    width: 4px;
+    height: 4px;
+    background: #ff1744;
+    border-radius: 50%;
+    box-shadow: 0 0 10px rgba(255, 23, 68, 0.8);
+    animation: blink 4s infinite;
+}
+
+/* Orejas puntiagudas */
+.creature-ears {
+    position: absolute;
+    top: -2px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 10px;
+}
+
+.creature-ear {
+    width: 0;
+    height: 0;
+    border-left: 4px solid transparent;
+    border-right: 4px solid transparent;
+    border-bottom: 8px solid rgba(255, 255, 255, 0.8);
+    filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.4));
+}
+
+/* Cola vista desde arriba */
+.creature-tail {
+    width: 4px;
+    height: 20px;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.9), rgba(200, 200, 200, 0.7));
+    border-radius: 4px;
+    position: absolute;
+    bottom: -15px;
+    left: 50%;
+    transform: translateX(-50%);
+    transform-origin: top;
+    animation: tailWag 1.5s ease-in-out infinite;
+    box-shadow: 0 0 12px rgba(255, 255, 255, 0.3);
+}
+
+/* Patas pequeñas */
+.creature-paws {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.creature-paw {
+    width: 6px;
+    height: 6px;
+    background: rgba(180, 180, 180, 0.8);
+    border-radius: 50%;
+    position: absolute;
+    box-shadow: 0 0 8px rgba(255, 255, 255, 0.3);
+}
+
+.paw-1 { top: -15px; left: -10px; }
+.paw-2 { top: -15px; right: -10px; }
+.paw-3 { bottom: -15px; left: -10px; }
+.paw-4 { bottom: -15px; right: -10px; }
+
+@keyframes breathe {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.08); }
+}
+
+@keyframes blink {
+    0%, 95%, 100% { transform: scaleY(1); }
+    97% { transform: scaleY(0.1); }
+}
+
+@keyframes tailWag {
+    0%, 100% { transform: translateX(-50%) rotate(0deg); }
+    25% { transform: translateX(-50%) rotate(18deg); }
+    75% { transform: translateX(-50%) rotate(-12deg); }
+}
+
+/* Animaciones de movimiento */
+.creature.walking .creature-body {
+    animation: walk 0.6s ease-in-out infinite, breathe 2.5s ease-in-out infinite;
+}
+
+.creature.walking .creature-tail {
+    animation: walkingTail 0.6s ease-in-out infinite;
+}
+
+.creature.walking .creature-paw {
+    animation: walkingPaws 0.6s ease-in-out infinite;
+}
+
+@keyframes walk {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.08, 0.92); }
+    50% { transform: scale(0.92, 1.08); }
+    75% { transform: scale(1.08, 0.92); }
+}
+
+@keyframes walkingTail {
+    0%, 100% { transform: translateX(-50%) rotate(25deg); }
+    50% { transform: translateX(-50%) rotate(-25deg); }
+}
+
+@keyframes walkingPaws {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.3); }
+    75% { transform: scale(0.7); }
+}
+
+/* Salto */
+.creature.jumping .creature-body {
+    animation: jump 0.8s ease-out, breathe 2.5s ease-in-out infinite;
+}
+
+@keyframes jump {
+    0% { transform: scale(1); }
+    25% { transform: scale(0.85, 1.25); }
+    50% { transform: scale(1.15, 0.85); }
+    75% { transform: scale(0.95, 1.08); }
+    100% { transform: scale(1); }
+}
+
+/* Mensaje de amor flotante MEJORADO */
+.love-bubble {
+    position: fixed;
+    background: linear-gradient(135deg, rgba(255, 23, 68, 0.95), rgba(233, 30, 99, 0.95));
+    color: white;
+    padding: 10px 16px;
+    border-radius: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    pointer-events: none;
+    z-index: 25;
+    box-shadow: 
+        0 8px 25px rgba(255, 23, 68, 0.6),
+        0 0 20px rgba(255, 23, 68, 0.4);
+    animation: floatUp 4s ease-out forwards;
+    white-space: nowrap;
+    min-width: 140px;
+    text-align: center;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+}
+
+.love-bubble::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
+    border-top: 10px solid rgba(255, 23, 68, 0.95);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+}
+
+@keyframes floatUp {
+    0% {
+        opacity: 0;
+        transform: translateY(25px) scale(0.7);
+    }
+    15% {
+        opacity: 1;
+        transform: translateY(-5px) scale(1.05);
+    }
+    25% {
+        transform: translateY(0) scale(1);
+    }
+    75% {
+        opacity: 1;
+        transform: translateY(-40px) scale(1);
+    }
+    90% {
+        opacity: 0.5;
+        transform: translateY(-55px) scale(0.9);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-70px) scale(0.7);
+    }
+}
+
+/* Responsive */
+@media (max-width: 480px) {
+    .name {
+        font-size: 2rem;
+    }
+    
+    .love-message {
+        font-size: 1rem;
+    }
+    
+    .time {
+        font-size: 1.3rem;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+    
+    .love-bubble {
+        font-size: 12px;
+        min-width: 120px;
+        padding: 8px 14px;
+    }
+}
+
+/* Animación sutil de entrada */
+.fade-in {
+    animation: fadeInUp 2s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
